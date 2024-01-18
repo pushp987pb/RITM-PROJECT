@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Suspense, lazy } from "react";
+import { createBrowserRouter, RouterProvider ,Navigate} from "react-router-dom";
+import RootLayout from "./RootLayout";
+import Home from "./components/Home/Home";
+import Register from "./components/Register/Register";
+import UserProfile from './components/UserProfile/UserProfile'
+import EditProfile from "./components/EditProfile/EditProfile";
+let Login = lazy(()=> import("./components/Login/Login"));
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+  //create BrowserRouter object
+  let browserRouter = createBrowserRouter([
+    {
+      path: "",
+      element: <RootLayout />,
+      children: [
+        {
+          path: "",
+          element: <Home />,
+        },
+        {
+          path: "register",
+          element: <Register />,
+        },
+        {
+          path: "login",
+          element: <Suspense fallback = {<p className="display-1 text-danger">Loading Login component........</p>}>  <Login/> </Suspense>,
+        },
+        {
+          path: "user-profile",
+          element: <UserProfile />,
+        },
+        {
+          path: "edit-profile",
+          element: <EditProfile />,
+        },
+      ],
+    },
+  ]);
 
+  return <RouterProvider router={browserRouter} />;
+}
 export default App;
