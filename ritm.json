@@ -1,0 +1,13 @@
+{
+  "temples": [
+    {
+      "username": "temple1",
+      "password": "$2a$05$M/oXk3xES51fY3M8xLCaWOpjurLwITQAV0Q.SQplxxSX808M4e8pq",
+      "email": "user@gmail.com",
+      "id": 1,
+      "name": "Pusph",
+      "mobNumber": "945658700",
+      "dob": "2024-01-18"
+    }
+  ]
+}
