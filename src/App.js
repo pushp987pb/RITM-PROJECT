@@ -6,7 +6,9 @@ import Home from "./components/Home/Home";
 import Register from "./components/Register/Register";
 import UserProfile from './components/UserProfile/UserProfile'
 import EditProfile from "./components/EditProfile/EditProfile";
+import ViewTemple from "./components/Find_Temple/FindTemple";
 let Login = lazy(()=> import("./components/Login/Login"));
+
 
 function App() {
   //create BrowserRouter object
@@ -21,7 +23,7 @@ function App() {
         },
         {
           path: "register",
-          element: <Register />,
+          element: <Register/>,
         },
         {
           path: "login",
@@ -34,6 +36,10 @@ function App() {
         {
           path: "edit-profile",
           element: <EditProfile />,
+        },
+        {
+          path: "view-temples",
+          element: <ViewTemple />,
         },
       ],
     },
