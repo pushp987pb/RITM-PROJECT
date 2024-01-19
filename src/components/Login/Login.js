@@ -8,7 +8,7 @@ function Login() {
   let navigate = useNavigate();
   let {register , handleSubmit } = useForm();
 
-  let [currentUser,setCurrentUser,userLoginStatus,setUserLoginStatus,onUserLogin,error] = useContext(userLoginContext);
+  let [currentUser,setCurrentUser,userLoginStatus, setUserLoginStatus,onUserLogin,isTemple,setIsTemple,error] = useContext(userLoginContext);
   
   useEffect(()=>{
      if(userLoginStatus === true){
@@ -46,10 +46,20 @@ function Login() {
        {/* ussername */}
       
        <form onSubmit = {handleSubmit(onUserLogin)} name='form1' className='w-50 p-3 border mx-auto mt-3'>
-            <div className="form-group mb-2">
+          {
+            isTemple ? (
+              <div className="form-group mb-2">
+              <label htmlFor="email">Email</label>
+              <input {...register("email")} type="email" className="form-control" id="email" placeholder="Enter Email"/>
+              </div>):(
+              <div className="form-group mb-2">
               <label htmlFor="username">Username</label>
               <input {...register("username")} type="text" className="form-control" id="username" placeholder="Username"/>
              </div>
+           )
+          }
+          
+            
               {/* password */}
             <div className="form-group mb-3">
               <label htmlFor="password">Password</label>

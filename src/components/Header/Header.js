@@ -1,11 +1,12 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import './Header.css'
+import { NavLink  } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import {userLoginContext} from '../contexts/userLoginContext'
 
 function Header() {
-  let [,setCurrentUser,userLoginStatus, setUserLoginStatus] = useContext(userLoginContext)
+  let [, setCurrentUser, userLoginStatus, setUserLoginStatus,,, setIsTemple,] = useContext(userLoginContext)
   
   function userLogout(){
     setCurrentUser({})
@@ -13,38 +14,48 @@ function Header() {
   }
 
   return (
-    <ul className="nav shadow  justify-content-end fs-4 p-2">
+    <ul className="">
       {userLoginStatus === false ? (
         <>
-            <li className="nav-item">
-            <Link className="nav-link" to="">
+          <li className="nav-item">
+            <Link className="nav-link"  to="">
               Home
             </Link>
           </li>
-
           <li className="nav-item">
-            <NavLink className="nav-link" to="register">
-              Register
-            </NavLink>
+            <Link className="nav-link"to="view-temples">
+              Views Temples
+            </Link>
           </li>
-          <li className="nav-item">
-            <NavLink className="nav-link" to="login">
-              Login
-            </NavLink>
+          {/* Dropdown */}
+          <li className="nav-item" >
+            <span className="nav-link">Register</span>
+             <div className="dropdown-content">
+              <Link className="nav"   to="register" onClick={()=>{setIsTemple(true)}}>
+                As Temple 
+               </Link>
+                <Link  className="nav"  to="register" onClick={()=>{setIsTemple(false)}}>
+                  As Guest 
+                </Link>
+             </div>
+          </li>
+          {/* Dropdown */}
+          <li className="nav-item" >
+            <span className="nav-link">Login</span>
+             <div className="dropdown-content">
+              <Link className="nav"  to="login" onClick={()=>{setIsTemple(true)}}>
+                As Temple 
+               </Link>
+                <Link className="nav"  to="login" onClick={()=>{setIsTemple(false)}}>
+                 As Guest 
+                </Link>
+             </div>
           </li>
         </>
       ) : (
       <>
-        <li className="nav-item">
-            <NavLink className="nav-link" to="edit-profile">
-              Edit Profile
-            </NavLink>
-        </li>
-        <li className="nav-item"  onClick={userLogout}>
-            <NavLink className="nav-link" to="">
-              Logout
-            </NavLink>
-        </li>
+        <li className="nav-item"> <Link className="nav-link" to="edit-profile">Edit Profile</Link></li>
+        <li className="nav-item"> <Link className="nav-link" onClick={userLogout}> Logout</Link> </li>
         
        </>
       )}

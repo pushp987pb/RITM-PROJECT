@@ -10,36 +10,39 @@ function UserContextProvider({children}) {
   let [userLoginStatus, setUserLoginStatus] = useState(false);
   let [error,setError]=useState('')
 
+  let [isTemple, setIsTemple] = useState(true);
 
-  async function onUserLogin(userCredObj) {
-    //make api call to verify credentials
-    let res = await axios.get(
-      `http://localhost:4000/temples?username=${userCredObj.username}`
-    );
-    let usersList = res.data;
-    //if user not existed
-    if (usersList.length === 0) {
-      setError("Invalid Username");
-    }
-    //if username is matched, then compare passwords
-    else {
-      let result = compareSync(userCredObj.password, usersList[0].password);
-      //if passwords are not matcted
-      if (result === false) {
-        setError("Invalid password");
+
+  
+    async function onUserLogin(userCredObj) {
+      //make api call to verify credentials
+      let res = await axios.get(
+        isTemple ? `http://localhost:4000/temples?email=${userCredObj.email}`:`http://localhost:4000/users?username=${userCredObj.username}`
+      );
+      let usersList = res.data;
+      //if user not existed
+      if (usersList.length === 0) {
+        setError("Invalid Username");
       }
-      //if passwords are matched, navigate to user profile
+      //if username is matched, then compare passwords
       else {
-        setCurrentUser(usersList[0]);
-        setUserLoginStatus(true);
-        //navigate("/user-profile");
+        let result = compareSync(userCredObj.password, usersList[0].password);
+        //if passwords are not matcted
+        if (result === false) {
+          setError("Invalid password");
+        }
+        //if passwords are matched, navigate to user profile
+        else {
+          setCurrentUser(usersList[0]);
+          setUserLoginStatus(true);
+          //navigate("/user-profile");
+        }
       }
     }
-  }
 
   return (
     <userLoginContext.Provider
-      value={[currentUser, setCurrentUser, userLoginStatus, setUserLoginStatus,onUserLogin,error]}
+      value={[currentUser, setCurrentUser, userLoginStatus, setUserLoginStatus,onUserLogin,isTemple, setIsTemple,error,setError]}
     >
         {children}
     </userLoginContext.Provider>
@@ -47,3 +50,31 @@ function UserContextProvider({children}) {
 }
 
 export default UserContextProvider;
+
+
+  
+    // async function onUserLogin(userCredObj) {
+    //   //make api call to verify credentials
+    //   let res = await axios.get(
+    //     `http://localhost:4000/users?username=${userCredObj.username}`
+    //   );
+    //   let usersList = res.data;
+    //   //if user not existed
+    //   if (usersList.length === 0) {
+    //     setError("Invalid Username");
+    //   }
+    //   //if username is matched, then compare passwords
+    //   else {
+    //     let result = compareSync(userCredObj.password, usersList[0].password);
+    //     //if passwords are not matcted
+    //     if (result === false) {
+    //       setError("Invalid password");
+    //     }
+    //     //if passwords are matched, navigate to user profile
+    //     else {
+    //       setCurrentUser(usersList[0]);
+    //       setUserLoginStatus(true);
+    //       //navigate("/user-profile");
+    //     }
+    //   }
+    // }

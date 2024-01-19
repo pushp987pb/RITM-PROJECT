@@ -51,8 +51,8 @@ function EditProfile(){
                     <input value={currentUser.username} type="text" className="form-control" id="username" placeholder="Username" disabled/>
                   </div>
                   <div className="form-group mb-2">
-                    <label htmlFor="name">Name</label>
-                    <input {...register("name")} type="text" className="form-control" id="name" placeholder="Full Name" required/>
+                    <label htmlFor="name">Name of Temple</label>
+                    <input {...register("name")} type="text" className="form-control" id="name" placeholder="Name of Temple" required/>
                   </div>
                   <div className="form-group mb-3">
                     <label htmlFor="email">Email</label>
@@ -63,8 +63,12 @@ function EditProfile(){
                     <input {...register("mobNumber")} type="tel" className="form-control" id="tel" placeholder="Mobile" required/>
                   </div>
                   <div className="form-group mb-3">
-                    <label htmlFor="dob">Date of Birth</label>
-                    <input {...register("dob")} type="date" className="form-control" id="tel" placeholder="Date of Birth" required/>
+                    <label htmlFor="state">State</label>
+                    <input {...register("state")} type="text" className="form-control" id="state" placeholder="State" required/>
+                  </div>
+                  <div className="form-group mb-3">
+                    <label htmlFor="district">District</label>
+                    <input {...register("district")} type="text" className="form-control" id="district" placeholder="District" required/>
                   </div>
                   <button  type="submit" className="btn btn-success mx-auto">Save</button>
                   <button onClick={openProfile} type="button" className="btn btn-danger mx-auto">Cancel</button>
