@@ -1,13 +1,47 @@
 {
   "temples": [
     {
-      "username": "temple1",
-      "password": "$2a$05$M/oXk3xES51fY3M8xLCaWOpjurLwITQAV0Q.SQplxxSX808M4e8pq",
-      "email": "user@gmail.com",
-      "id": 1,
-      "name": "Pusph",
-      "mobNumber": "945658700",
-      "dob": "2024-01-18"
+      "name": "Mehdipur Balaji",
+      "email": "abc@gmail.com",
+      "password": "$2a$05$v3j0W0hVGJM/bpwDXvi/fOlRV3SR2uRfox892EtBx5zxLz/OxOA/y",
+      "id": 1
+    },
+    {
+      "username": "",
+      "email": "sam2324@gmail.com",
+      "password": "$2a$05$EcjwTL/Ry2AO2ROcEFLx6.QfWz2L0jSlzXJV68w5hRDVWjiB1aIiO",
+      "name": "Sai Temple",
+      "id": 2
+    },
+    {
+      "username": "guest",
+      "email": "abc@gmail.com",
+      "password": "$2a$05$aannxfbIHz6EbogzOYOv0edhlliBuIjiHzr2gfarp0NRgIGdrhmEq",
+      "id": 3,
+      "name": "Tanmay",
+      "mobNumber": "7505594848",
+      "dob": "2024-01-19"
+    }
+  ],
+  "users": [
+    {
+      "username": "user",
+      "password": "$2a$05$eKUjecEsXuHzFmV5SFcIlulruu4SVqgoLUt39bhv1wbH22E9F7MoC",
+      "email": "abc@gmail.com",
+      "id": 1
+    },
+    {
+      "name": "",
+      "email": "pusph987bhardwaj@gmail.com",
+      "password": "$2a$05$J3pRY.V0jjJcJ3SStwn9FO9Ocf8F5TAvIwZ0ZPUv7c.j/6EzU5Kva",
+      "username": "pushp",
+      "id": 2
+    },
+    {
+      "username": "guest",
+      "email": "abc@gmail.com",
+      "password": "$2a$05$aannxfbIHz6EbogzOYOv0edhlliBuIjiHzr2gfarp0NRgIGdrhmEq",
+      "id": 3
     }
   ]
 }
