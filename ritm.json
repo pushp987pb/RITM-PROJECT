@@ -1,47 +1,54 @@
 {
   "temples": [
     {
-      "name": "Mehdipur Balaji",
-      "email": "abc@gmail.com",
-      "password": "$2a$05$v3j0W0hVGJM/bpwDXvi/fOlRV3SR2uRfox892EtBx5zxLz/OxOA/y",
-      "id": 1
+      "id": "5d51",
+      "name": "Mehdipur Balaji Temple",
+      "email": "balaji123@gmail.com",
+      "password": "$2a$05$SrQlA3SW./UWn.Qm6xbh2usZmkfwCfs.Zvn7ySxcHzAt73K0lTH2.",
+      "mobNumber": "7890785644",
+      "state": "Madhya Pradesh",
+      "district": "Nagpur",
+      "diety": "Balaji Maharaj"
     },
     {
-      "username": "",
-      "email": "sam2324@gmail.com",
-      "password": "$2a$05$EcjwTL/Ry2AO2ROcEFLx6.QfWz2L0jSlzXJV68w5hRDVWjiB1aIiO",
-      "name": "Sai Temple",
-      "id": 2
+      "id": "c3fc",
+      "name": "Jagannath Temple",
+      "email": "jagannath@gmail.com",
+      "password": "$2a$05$aR46XJsTgSGtyDrMAdkr2eKuEHI/PgXLqLXfMErA4pHCxsAkJI/Q2"
     },
     {
-      "username": "guest",
-      "email": "abc@gmail.com",
-      "password": "$2a$05$aannxfbIHz6EbogzOYOv0edhlliBuIjiHzr2gfarp0NRgIGdrhmEq",
-      "id": 3,
-      "name": "Tanmay",
-      "mobNumber": "7505594848",
-      "dob": "2024-01-19"
+      "id": "001b",
+      "name": "Radha Krishana Temple",
+      "email": "krishna@gmail.com",
+      "password": "$2a$05$RszWFUwaB3sRjRR4mFOgM.veSRKEgnIE2fAe2ZRtTjPkJR7VUa9Aa",
+      "diety": "Shri Krishna and Radha ",
+      "mobNumber": "78945654785",
+      "state": "Uttar Pradesh",
+      "district": "Mathura "
+    },
+    {
+      "id": "6b28",
+      "name": "Shri Sai Temple",
+      "email": "shrisai@gmai.com",
+      "password": "$2a$05$GQnKobRBVrFB5X9ySJ3a5.AGg2J84PNHrKFOejCMkYj2iIM8Lmjku"
+    },
+    {
+      "id": "cd0c",
+      "name": "ISKON TEMPLE",
+      "email": "iskon@gmail.com",
+      "password": "$2a$05$CJSajozN7jagwqMkNvHWQOw5fmeFB.WmP9bfDOZRJvrGM/trtXiGG"
     }
   ],
   "users": [
     {
-      "username": "user",
-      "password": "$2a$05$eKUjecEsXuHzFmV5SFcIlulruu4SVqgoLUt39bhv1wbH22E9F7MoC",
-      "email": "abc@gmail.com",
-      "id": 1
-    },
-    {
-      "name": "",
-      "email": "pusph987bhardwaj@gmail.com",
-      "password": "$2a$05$J3pRY.V0jjJcJ3SStwn9FO9Ocf8F5TAvIwZ0ZPUv7c.j/6EzU5Kva",
-      "username": "pushp",
-      "id": 2
-    },
-    {
-      "username": "guest",
-      "email": "abc@gmail.com",
-      "password": "$2a$05$aannxfbIHz6EbogzOYOv0edhlliBuIjiHzr2gfarp0NRgIGdrhmEq",
-      "id": 3
+      "id": "728b",
+      "username": "karan",
+      "email": "karan@g.com",
+      "password": "$2a$05$eYJXHfCwentuisxHk/9aaOvYM0YsxE1Dmyh0UFZthUTrD4uAg7Emq",
+      "fullname": "Karan Sharma",
+      "mobNumber": "9876543210",
+      "dob": "2024-01-25",
+      "gender": "Male"
     }
   ]
 }
