@@ -6,7 +6,9 @@ import Home from "./components/Home/Home";
 import Register from "./components/Register/Register";
 import UserProfile from './components/UserProfile/UserProfile'
 import EditProfile from "./components/EditProfile/EditProfile";
-import ViewTemple from "./components/Find_Temple/FindTemple";
+import ViewTemple from "./components/View_Temple/ViewTemple";
+import TempleDetails from "./components/TempleDetails/TempleDetails"
+import TempleProfile from './components/TempleProfile/TempleProfile'
 let Login = lazy(()=> import("./components/Login/Login"));
 
 
@@ -35,11 +37,19 @@ function App() {
         },
         {
           path: "edit-profile",
-          element: <EditProfile />,
+          element: <EditProfile/>,
         },
         {
           path: "view-temples",
           element: <ViewTemple />,
+        },
+        {
+          path: "temple-details/:id", // Adjust the path to include the temple's id
+          element: <TempleDetails />,
+        },
+        {
+          path: "temple-profile",
+          element: <TempleProfile />,
         },
       ],
     },
