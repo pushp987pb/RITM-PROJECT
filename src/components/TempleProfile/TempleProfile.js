@@ -1,50 +1,107 @@
-import {useContext,useState} from 'react'
+import React, { useContext, useState } from 'react';
+import axios from 'axios';
+import {useForm} from 'react-hook-form'
 import './TempleProfile.css';
-import {Link} from "react-router-dom";
-import { userLoginContext } from '../contexts/userLoginContext'
+import { TempleContext } from '../contexts/TempleContext';
+import { userLoginContext } from '../contexts/userLoginContext';
 
-function UserProfile() {
-  let [currentUser,setCurrentUser]=useContext(userLoginContext)
-  let [msg , setmsg]  = useState('')
+function TempleProfile() {
+  let {register , handleSubmit , setValue } = useForm();
 
-  function userLogout(){
-    // setCurrentUser({})
-    // setUserLoginStatus(false)
-  }
+  let [onRoomsUpdate] = useContext(TempleContext);
 
+  let [currentUser] = useContext(userLoginContext);
+
+  const [showRoomsForm, setShowRoomsForm] = useState(false);
+  const [roomsData, setRoomsData] = useState({
+    singleSeater: 0,
+    doubleSeater: 0,
+    tripleSeater: 0,
+  });
 
   return (
-    <section className="section">
-        <header className='templeProfile-header'>
-            <ul>
-             <li className="nav-item"> <Link className="link" to="edit-profile">Edit Profile</Link></li>
-             <li className="nav-item"> <Link className="link" onClick={userLogout}> Logout</Link> </li>
-            </ul>
-        </header>
-      <div className='user-profile mx-auto m-5 rounded w-50 p-3'>
-        <p className="fs-1 text-primary fw-bold text-center">Welcome {currentUser.name}</p>
-        <div className='user-details'>
-          <img
-            className='profile-image'
-            src = 'https://images.unsplash.com/photo-1524443169398-9aa1ceab67d5?q=80&w=1448&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-            // src={currentUser.profileImg}
-            alt='Profile'
-          />
-          <div className='user-info'>
-            <p className='fs-2 text-center w-75 rounded'>YOUR DETAILS</p>
-            {currentUser.username && <p className=''>Username: {currentUser.username}</p>}
-            {currentUser.email && <p className=''>Email: {currentUser.email}</p>}
-            {currentUser.mobNumber && <p className=''>Mobile: {currentUser.mobNumber}</p>}
-            {currentUser.dob && <p className=''>DOB: {currentUser.dob}</p>}
-          </div>
-        </div>
-        {msg.length !== 0 && <p className='fs-5 text-center text-danger mt-3'>{msg}</p>}
+    <section className="temple-profile-section">
+      {/* Header Section - Name of Temple */}
+      <div className="temple-header">
+        <h1 className="temple-name">{currentUser.name}</h1>
       </div>
+
+      {/* Three Cards Section */}
+      <div className="temple-cards-row">
+        <div className="temple-profile-card upcoming-events-card">
+          <h3>Update Upcoming Event</h3>
+          <p className='event-name'>Event Name: {currentUser.upcomingEventName || 'No upcoming event'}</p>
+          <p className='event-start-date'>Start Date: {currentUser.upcomingEventStartDate || 'Not specified'}</p>
+          <p className='event-duration'>Duration: {currentUser.upcomingEventDuration || 'Not specified'}</p>
+          {/* Add form elements to update event details here */}
+        </div>
+
+        {/* Stay Facilities Card */}
+        <div className="temple-profile-card stay-facilities-card">
+          <h3>Stay Facilities</h3>
+          <p>Single Seater: {currentUser.singleSeaterRooms}</p>
+          <p>Double Seater: {currentUser.doubleSeaterRooms}</p>
+          <p>Triple Seater: {currentUser.tripleSeaterRooms}</p>
+          <button onClick={() => setShowRoomsForm(true)} className="update-rooms-button">
+            Update Rooms
+          </button>
+        </div>
+
+        <div className="temple-profile-card home-fund-card">
+          <h3>Home Fund</h3>
+          <p>Total Donations Received: ${currentUser.homeFund || 0}</p>
+          {/* Add form elements to update donation details here */}
+        </div>
+      </div>
+
+      {/* Temple Details Section - Two-Column Layout */}
+      <div className="temple-details-row">
+        <div className="temple-details-column">
+        <p className='temple-detail'>Temple ID : {currentUser.id}</p>
+          <p className='temple-detail'>Email: {currentUser.email}</p>
+          <p className='temple-detail'>Mobile: {currentUser.mobNumber}</p>
+          <p className='temple-detail'>DIETY: {currentUser.diety}</p>
+          <p className='temple-detail'>State: {currentUser.state}</p>
+          <p className='temple-detail'>District: {currentUser.district}</p>
+        </div>
+
+        <div className="temple-image-column">
+          <img src={currentUser.image} alt='Temple Image' className='temple-image' />
+        </div>
+      </div>
+    {/* Rooms Update Form */}
+      {showRoomsForm && (
+        <form  id='room-update-form' onSubmit={handleSubmit(onRoomsUpdate)}>
+          <div className="rooms-update-form">
+            <h3>Update Rooms Availability</h3>
+            <div className="form-group mb-2">
+            <label className='text-align-left' htmlFor="name">Temple ID</label>
+            <input  value={currentUser.id}  type="text" className="form-control" disabled/>
+            </div> 
+            <div className="form-group mb-2">
+            <label className='text-align-left' htmlFor="name">Single Seater Rooms</label>
+            <input  {...register("single_seater")} type="text" className="form-control"placeholder="Number of rooms available" required/>
+            </div>  
+            <div className="form-group mb-2">
+            <label className='text-align-left' htmlFor="name">Double Seater Rooms</label>
+            <input  {...register("double_seater")} type="text" className="form-control"placeholder="Number of rooms available" required/>
+            </div>  
+            <div className="form-group mb-2">
+            <label className='text-align-left' htmlFor="name">Tripe Seater Rooms</label>
+            <input  {...register("triple_seater")} type="text" className="form-control"placeholder="Number of rooms available" required/>
+            </div>  
+            <div className="form-buttons">
+              <button type="submit">Submit</button>
+              <button onClick={() => setShowRoomsForm(false)}>Cancel</button>
+            </div>
+          </div>
+          </form>)}
     </section>
-  )
+  );
 }
 
-export default UserProfile
+export default TempleProfile;
+
 
 
 

@@ -10,7 +10,7 @@ function EditProfile(){
     
     let navigate = useNavigate();
     let {register , handleSubmit , setValue } = useForm();
-    let [currentUser, setCurrentUser, , ,,isTemple, setIsTemple,error,setError]=useContext(userLoginContext);
+    let [currentUser, setCurrentUser,,,,isTemple, setIsTemple,error,setError]=useContext(userLoginContext);
 
     useEffect(() => {
       // Set initial values for the form based on the current user's data
@@ -20,6 +20,8 @@ function EditProfile(){
         setValue("mobNumber", currentUser.mobNumber || "");
         setValue("state", currentUser.state || "");
         setValue("district", currentUser.district || "");
+        setValue("about", currentUser.about || "");
+        setValue("image", currentUser.image || "");
       } else {
         setValue("fullname", currentUser.fullname || "");
         setValue("email", currentUser.email || "");
@@ -51,7 +53,8 @@ function EditProfile(){
             console.error('Error updating user data:', updateResponse.statusText);
           }
           // navigate to user profile page
-          navigate("/user-profile")
+          isTemple ? navigate("/temple-profile") : navigate("/user-profile") ;
+          
 
         } catch (error) {
           console.error('Error updating or fetching user data:', error.message);
@@ -83,6 +86,14 @@ function EditProfile(){
                 <div className="form-group mb-3">
                   <label htmlFor="tel">Mobile</label>
                   <input {...register("mobNumber")} type="tel" className="form-control" id="tel" placeholder="Mobile" required/>
+                </div>
+                <div className="form-group mb-3">
+                  <label htmlFor="about">About Temple</label>
+                  <textarea {...register("about")} className="form-control"  placeholder="Enter about temple"> </textarea>
+                </div>
+                <div className="form-group mb-3">
+                  <label htmlFor="image">Image of Temple</label>
+                  <input {...register("image")} type="text" className="form-control" id="image" placeholder="Image Address URL"/>
                 </div>
                 <div className="form-group mb-3">
                   <label htmlFor="state">State</label>
