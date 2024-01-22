@@ -8,7 +8,9 @@
       "mobNumber": "7890785644",
       "state": "Madhya Pradesh",
       "district": "Nagpur",
-      "diety": "Balaji Maharaj"
+      "diety": "Balaji Maharaj",
+      "about": "",
+      "image": "https://media-cdn.tripadvisor.com/media/photo-s/1b/8f/d7/8e/balaji-temple-near-dosa.jpg"
     },
     {
       "id": "c3fc",
@@ -30,7 +32,13 @@
       "id": "6b28",
       "name": "Shri Sai Temple",
       "email": "shrisai@gmai.com",
-      "password": "$2a$05$GQnKobRBVrFB5X9ySJ3a5.AGg2J84PNHrKFOejCMkYj2iIM8Lmjku"
+      "password": "$2a$05$GQnKobRBVrFB5X9ySJ3a5.AGg2J84PNHrKFOejCMkYj2iIM8Lmjku",
+      "diety": "Sai nath",
+      "mobNumber": "7505594848",
+      "about": " Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
+      "state": "Tamil Nadu",
+      "district": "Madras",
+      "image": "https://www.oyorooms.com/blog/wp-content/uploads/2017/10/Feature-Image-min-2-1.jpg"
     },
     {
       "id": "cd0c",
@@ -49,6 +57,16 @@
       "mobNumber": "9876543210",
       "dob": "2024-01-25",
       "gender": "Male"
+    }
+  ],
+  "templeDetails": [
+    {
+      "roomsData": {
+        "single_seater": "10",
+        "double_seater": "10",
+        "triple_seater": "10"
+      },
+      "id": 1
     }
   ]
 }
