@@ -10,7 +10,23 @@
       "district": "Nagpur",
       "diety": "Balaji Maharaj",
       "about": "",
-      "image": "https://media-cdn.tripadvisor.com/media/photo-s/1b/8f/d7/8e/balaji-temple-near-dosa.jpg"
+      "image": "https://media-cdn.tripadvisor.com/media/photo-s/1b/8f/d7/8e/balaji-temple-near-dosa.jpg",
+      "roomData": {
+        "single_seater": 100,
+        "double_seater": 100,
+        "triple_seater": 100
+      },
+      "eventData": {
+        "single_seater": "151",
+        "double_seater": "151",
+        "triple_seater": "151",
+        "event_name": "Pooja",
+        "event_date": "2024-01-23",
+        "event_duration": "10 Days"
+      },
+      "donation": {
+        "amount": 2500
+      }
     },
     {
       "id": "c3fc",
@@ -35,7 +51,7 @@
       "password": "$2a$05$GQnKobRBVrFB5X9ySJ3a5.AGg2J84PNHrKFOejCMkYj2iIM8Lmjku",
       "diety": "Sai nath",
       "mobNumber": "7505594848",
-      "about": " Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
+      "about": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
       "state": "Tamil Nadu",
       "district": "Madras",
       "image": "https://www.oyorooms.com/blog/wp-content/uploads/2017/10/Feature-Image-min-2-1.jpg"
@@ -44,7 +60,20 @@
       "id": "cd0c",
       "name": "ISKON TEMPLE",
       "email": "iskon@gmail.com",
-      "password": "$2a$05$CJSajozN7jagwqMkNvHWQOw5fmeFB.WmP9bfDOZRJvrGM/trtXiGG"
+      "password": "$2a$05$CJSajozN7jagwqMkNvHWQOw5fmeFB.WmP9bfDOZRJvrGM/trtXiGG",
+      "roomData": {
+        "single_seater": "12",
+        "double_seater": "15",
+        "triple_seater": "50"
+      },
+      "eventData": {
+        "event_name": "Laxmi Pooja",
+        "event_date": "2024-01-23",
+        "event_duration": "11 Days",
+        "single_seater": "12",
+        "double_seater": "15",
+        "triple_seater": "25"
+      }
     },
     {
       "id": "1f1b",
@@ -56,14 +85,20 @@
       "about": "The Ram Mandir is a Hindu temple under construction in Ayodhya, Uttar Pradesh, India. It is located at the site of Ram Janmabhoomi, the hypothesized birthplace of Rama, a principal deity of Hinduism. The site is the former location of the Babri Masjid which was built in 16th century CE.The Ram Mandir is a Hindu temple under construction in Ayodhya, Uttar Pradesh, India. It is located at the site of Ram Janmabhoomi, the hypothesized birthplace of Rama, a principal deity of Hinduism. The site is the former location of the Babri Masjid which was built in 16th century CE.",
       "image": "https://c.ndtvimg.com/2023-01/tvftvgo_ram-temple_640x480_30_January_23.jpg?im=FitAndFill,algorithm=dnn,width=1200,height=675?ver-20242612-0.150",
       "state": "Uttar Pradesh",
-      "district": "AYODHAYA"
-    },
-    {
-      "id": "49ba",
-      "templeId": "6b28",
-      "singleSeater": "15",
-      "doubleSeater": "15",
-      "tripleSeater": "15"
+      "district": "AYODHAYA Ram Nagri",
+      "roomData": {
+        "single_seater": "160",
+        "double_seater": "145",
+        "triple_seater": "90"
+      },
+      "eventData": {
+        "single_seater": "160",
+        "double_seater": "145",
+        "triple_seater": "90",
+        "event_name": "Pran Pratistha",
+        "event_date": "2024-01-25",
+        "event_duration": "1 Day"
+      }
     }
   ],
   "users": [
@@ -75,56 +110,28 @@
       "fullname": "Karan Sharma",
       "mobNumber": "9876543210",
       "dob": "2024-01-25",
-      "gender": "Male"
+      "gender": "Male",
+      "templeName": "Mehdipur Balaji Temple",
+      "bookedRooms": {
+        "amount": "1400",
+        "payment_method": "UPI",
+        "single_seater": "30",
+        "double_seater": "30",
+        "triple_seater": "30"
+      },
+      "donation": {
+        "single_seater": "20",
+        "double_seater": "20",
+        "triple_seater": "20",
+        "amount": "3000",
+        "payment_method": "UPI"
+      }
     },
     {
       "id": "e84d",
       "username": "arjun",
       "email": "arjun@gmail.com",
       "password": "$2a$05$kXNBLPJDVP2gt4WFqCuFn.d4EFC8ecnU.Uinn499n6txWZg7IAg/O"
-    }
-  ],
-  "templeRoomDetails": [
-    {
-      "id": "b611",
-      "templeId": "1f1b",
-      "singleSeater": "15",
-      "doubleSeater": "28",
-      "tripleSeater": "24"
-    },
-    {
-      "id": "a969",
-      "templeId": "1f1b",
-      "singleSeater": "15",
-      "doubleSeater": "28",
-      "tripleSeater": "24"
-    },
-    {
-      "id": "d6c7",
-      "templeId": "6b28",
-      "singleSeater": "15",
-      "doubleSeater": "15",
-      "tripleSeater": "15"
-    },
-    {
-      "singleSeater": "10",
-      "doubleSeater": "10",
-      "tripleSeater": "10",
-      "id": "8f8a"
-    },
-    {
-      "id": "0a2a",
-      "templeId": "1f1b",
-      "singleSeater": "101",
-      "doubleSeater": "101",
-      "tripleSeater": "101"
-    },
-    {
-      "id": "d29f",
-      "templeId": "5d51",
-      "singleSeater": "10",
-      "doubleSeater": "10",
-      "tripleSeater": "10"
     }
   ]
 }
