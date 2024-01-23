@@ -1,6 +1,7 @@
 import React from 'react'
 import {useForm} from 'react-hook-form'
 import { userLoginContext } from '../contexts/userLoginContext';
+import {TempleContext} from '../contexts/TempleContext';
 import { useEffect,useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,13 +9,15 @@ function Login() {
   let navigate = useNavigate();
   let {register , handleSubmit } = useForm();
 
-  let [currentUser,setCurrentUser,userLoginStatus, setUserLoginStatus,onUserLogin,isTemple,setIsTemple,error] = useContext(userLoginContext);
+  let [currentUser,setCurrentUser,userLoginStatus, setUserLoginStatus,onUserLogin,error] = useContext(userLoginContext);
+  let [isTemple,setIsTemple,currentTemple,setCurrentTemple,templeLoginStatus,setTempleLoginStatus,onTempleLogin]  = useContext(TempleContext)
   
-  useEffect(()=>{
-     if(userLoginStatus === true){
-      isTemple ? navigate("/temple-profile") :navigate("/user-profile") ;
-     }
-  },[userLoginStatus]);
+  useEffect(() => {
+    if (userLoginStatus === true || templeLoginStatus === true) {
+      const targetPath = isTemple ? "/temple-profile" : "/user-profile";
+      navigate(targetPath);
+    }
+  }, [userLoginStatus, templeLoginStatus, isTemple, navigate]);
 
 
 
@@ -24,7 +27,7 @@ function Login() {
        {error.length !== 0 && <p className='fs-2 text-center text-danger'>{error}</p>}
        {/* ussername */}
       
-       <form onSubmit = {handleSubmit(onUserLogin)} name='form1' className='w-50 p-3 border mx-auto mt-3'>
+       <form onSubmit = {handleSubmit( isTemple ? onTempleLogin : onUserLogin)} name='form1' className='w-50 p-3 border mx-auto mt-3'>
           {
             isTemple ? (
               <div className="form-group mb-2">
