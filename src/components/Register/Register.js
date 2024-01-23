@@ -5,10 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { useState, useContext } from 'react';
 import { hashSync } from 'bcryptjs';
 import { userLoginContext } from '../contexts/userLoginContext';
+import { TempleContext } from '../contexts/TempleContext';
 
 function Register() {
-  let [currentUser, setCurrentUser, userLoginStatus, setUserLoginStatus,onUserLogin,isTemple, setIsTemple,error,setError] = useContext(userLoginContext);
- 
+  let [currentUser, setCurrentUser, userLoginStatus, setUserLoginStatus,onUserLogin,error,setError] = useContext(userLoginContext);
+  let [isTemple,setIsTemple,currentTemple,setCurrentTemple,templeLoginStatus,setTempleLoginStatus,onTempleLogin]  = useContext(TempleContext)
   let {register,handleSubmit } = useForm();
 
   let navigate = useNavigate();// to navigate to login page
