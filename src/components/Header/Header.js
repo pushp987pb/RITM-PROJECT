@@ -3,18 +3,25 @@ import './Header.css'
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import {userLoginContext} from '../contexts/userLoginContext'
+import { TempleContext } from '../contexts/TempleContext'
 
 function Header() {
-  let [, setCurrentUser, userLoginStatus, setUserLoginStatus,onUserLogin,isTemple, setIsTemple,error,setError] = useContext(userLoginContext)
-  
+  let [currentUser, setCurrentUser, userLoginStatus, setUserLoginStatus,onUserLogin,error,setError] = useContext(userLoginContext)
+  let [isTemple, setIsTemple,currentTemple, setCurrentTemple,templeLoginStatus, setTempleLoginStatus] = useContext(TempleContext)
+
   function userLogout(){
-    setCurrentUser({})
-    setUserLoginStatus(false)
+    if(isTemple){
+      setCurrentTemple({});
+      setTempleLoginStatus(false);
+    }else{
+      setCurrentUser({});
+      setUserLoginStatus(false);
+    }
   }
 
   return (
     <ul className='mb-0 shadow'>
-      {userLoginStatus === false ? (
+      {(userLoginStatus === false)&&(templeLoginStatus === false) ? (
         <>
           <li className="nav-item">
             <Link className="link"  to="">
