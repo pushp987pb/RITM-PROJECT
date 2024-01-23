@@ -45,6 +45,25 @@
       "name": "ISKON TEMPLE",
       "email": "iskon@gmail.com",
       "password": "$2a$05$CJSajozN7jagwqMkNvHWQOw5fmeFB.WmP9bfDOZRJvrGM/trtXiGG"
+    },
+    {
+      "id": "1f1b",
+      "name": "Ram Mandir",
+      "email": "ram@gmail.com",
+      "password": "$2a$05$LFqwtSCDKyI9JOqjRubsg.7aNsZvUraV8z2i61Y2Mh1mPVxJVhiGa",
+      "diety": "Shri Ram Chandra",
+      "mobNumber": "897845665",
+      "about": "The Ram Mandir is a Hindu temple under construction in Ayodhya, Uttar Pradesh, India. It is located at the site of Ram Janmabhoomi, the hypothesized birthplace of Rama, a principal deity of Hinduism. The site is the former location of the Babri Masjid which was built in 16th century CE.The Ram Mandir is a Hindu temple under construction in Ayodhya, Uttar Pradesh, India. It is located at the site of Ram Janmabhoomi, the hypothesized birthplace of Rama, a principal deity of Hinduism. The site is the former location of the Babri Masjid which was built in 16th century CE.",
+      "image": "https://c.ndtvimg.com/2023-01/tvftvgo_ram-temple_640x480_30_January_23.jpg?im=FitAndFill,algorithm=dnn,width=1200,height=675?ver-20242612-0.150",
+      "state": "Uttar Pradesh",
+      "district": "AYODHAYA"
+    },
+    {
+      "id": "49ba",
+      "templeId": "6b28",
+      "singleSeater": "15",
+      "doubleSeater": "15",
+      "tripleSeater": "15"
     }
   ],
   "users": [
@@ -57,16 +76,55 @@
       "mobNumber": "9876543210",
       "dob": "2024-01-25",
       "gender": "Male"
+    },
+    {
+      "id": "e84d",
+      "username": "arjun",
+      "email": "arjun@gmail.com",
+      "password": "$2a$05$kXNBLPJDVP2gt4WFqCuFn.d4EFC8ecnU.Uinn499n6txWZg7IAg/O"
     }
   ],
-  "templeDetails": [
+  "templeRoomDetails": [
     {
-      "roomsData": {
-        "single_seater": "10",
-        "double_seater": "10",
-        "triple_seater": "10"
-      },
-      "id": 1
+      "id": "b611",
+      "templeId": "1f1b",
+      "singleSeater": "15",
+      "doubleSeater": "28",
+      "tripleSeater": "24"
+    },
+    {
+      "id": "a969",
+      "templeId": "1f1b",
+      "singleSeater": "15",
+      "doubleSeater": "28",
+      "tripleSeater": "24"
+    },
+    {
+      "id": "d6c7",
+      "templeId": "6b28",
+      "singleSeater": "15",
+      "doubleSeater": "15",
+      "tripleSeater": "15"
+    },
+    {
+      "singleSeater": "10",
+      "doubleSeater": "10",
+      "tripleSeater": "10",
+      "id": "8f8a"
+    },
+    {
+      "id": "0a2a",
+      "templeId": "1f1b",
+      "singleSeater": "101",
+      "doubleSeater": "101",
+      "tripleSeater": "101"
+    },
+    {
+      "id": "d29f",
+      "templeId": "5d51",
+      "singleSeater": "10",
+      "doubleSeater": "10",
+      "tripleSeater": "10"
     }
   ]
 }
