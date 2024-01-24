@@ -1,70 +1,48 @@
-import React, { useContext, useState , useEffect} from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
-import {useForm} from 'react-hook-form'
+import { useForm } from 'react-hook-form';
 import './TempleProfile.css';
 import { TempleContext } from '../contexts/TempleContext';
 
 function TempleProfile() {
-  let {register , handleSubmit , setValue } = useForm();
+  const { register, handleSubmit, setValue } = useForm();
 
-  let [,,currentTemple] = useContext(TempleContext);
+  const [, , currentTemple, setCurrentTemple] = useContext(TempleContext);
 
   const [showRoomsForm, setShowRoomsForm] = useState(false);
-  const [roomData, setRoomsData] = useState({
-    singleSeater: 0,
-    doubleSeater: 0,
-    tripleSeater: 0,
-  });
+  const [eventForm, setEventForm] = useState(false);
 
-  useEffect(() => {
-    // Fetch room details when the component mounts
-    fetchRoomDetails();
-  }, [currentTemple.id]); // Fetch room details whenever the temple ID changes
-
-  const fetchRoomDetails = async () => {
-    try {
-      // Fetch room details from local API based on the current temple ID
-      const response = await axios.get(`http://localhost:4000/templeRoomDetails?templeId=${currentTemple.id}`);
-      // Update state with the fetched data
-      setRoomsData(response.data[0]);
-    } catch (error) {
-      console.error('Error fetching room details:', error);
-      // Handle error if necessary
-    }
-  };
-  
   const onRoomUpdate = async (data) => {
     try {
-      // Fetch the existing room details first
-      const existingRoomDetails = await axios.get(`http://localhost:4000/templeRoomDetails?templeId=${currentTemple.id}`);
-      
-      if (existingRoomDetails.data.length > 0) {
-        // If room details exist, update them using axios.put
-        await axios.put(`http://localhost:4000/templeRoomDetails/${existingRoomDetails.data[0].id}`, {
-          singleSeater: data.single_seater,
-          doubleSeater: data.double_seater,
-          tripleSeater: data.triple_seater,
-        });
-      } else {
-        // If room details don't exist, create them using axios.post
-        await axios.post(`http://localhost:4000/templeRoomDetails`, {
-          templeId: currentTemple.id,
-          singleSeater: data.single_seater,
-          doubleSeater: data.double_seater,
-          tripleSeater: data.triple_seater,
-        });
+      let updatedData = { ...currentTemple, roomData: { ...data } };
+      const updateResponse = await axios.put(`http://localhost:4000/temples/${currentTemple.id}`, updatedData);
+      if (updateResponse.status === 200) {
+        setCurrentTemple(updatedData);
+        console.log('Updated Successfully');
       }
-  
-      // Fetch updated room details after successful update
-      fetchRoomDetails();
-  
-      // Close the form
       setShowRoomsForm(false);
     } catch (error) {
       console.error('Error submitting form:', error);
       // Handle error if necessary
     }
   };
+  async function onEventUpdate(data){
+    let updatedData = { ...currentTemple, eventData: { ...data } };
+    const updateResponse = await axios.put(`http://localhost:4000/temples/${currentTemple.id}`, updatedData);
+      if (updateResponse.status === 200) {
+        setCurrentTemple(updatedData);
+      }
+      setEventForm(false);
+  }
+
+  useEffect(() => {
+    // Set form values when showRoomsForm is true and currentTemple.roomData is defined
+    if (showRoomsForm && currentTemple.roomData) {
+      setValue("single_seater", currentTemple.roomData.single_seater || '');
+      setValue("double_seater", currentTemple.roomData.double_seater || '');
+      setValue("triple_seater", currentTemple.roomData.triple_seater || '');
+    }
+  }, [showRoomsForm, currentTemple]);
 
   return (
     <section className="temple-profile-section">
@@ -75,30 +53,31 @@ function TempleProfile() {
 
       {/* Three Cards Section */}
       <div className="temple-cards-row">
-
         {/* Stay Upcoming event Card */}
         <div className="temple-profile-card upcoming-events-card">
           <h3>Update Upcoming Event</h3>
-          <p className='event-name'>Event Name: {currentTemple.upcomingEventName || 'No upcoming event'}</p>
-          <p className='event-start-date'>Start Date: {currentTemple.upcomingEventStartDate || 'Not specified'}</p>
-          <p className='event-duration'>Duration: {currentTemple.upcomingEventDuration || 'Not specified'}</p>
-          {/* Add form elements to update event details here */}
+          <p className='event-name'>Event Name: {currentTemple.eventData?.event_name || 'No upcoming event'}</p>
+          <p className='event-start-date'>Start Date: {currentTemple.eventData?.event_date || 'Not specified'}</p>
+          <p className='event-duration'>Duration: {currentTemple.eventData?.event_duration || 'Not specified'}</p>
+          <button onClick={() => setEventForm(true)} className="update-rooms-button">
+            Update Event
+          </button>
         </div>
 
         {/* Stay Facilities Card */}
         <div className="temple-profile-card stay-facilities-card">
-        <h3>Stay Facilities</h3>
-              <p>Single Seater: {roomData && roomData.singleSeater}</p>
-              <p>Double Seater: {roomData && roomData.doubleSeater}</p>
-              <p>Triple Seater: {roomData && roomData.tripleSeater}</p>
-        <button onClick={() => setShowRoomsForm(true)} className="update-rooms-button">
-          Update Rooms
-        </button>
-      </div>
+          <h3>Stay Facilities</h3>
+          <p>Single Seater: {currentTemple.roomData && currentTemple.roomData.single_seater}</p>
+          <p>Double Seater: {currentTemple.roomData && currentTemple.roomData.double_seater}</p>
+          <p>Triple Seater: {currentTemple.roomData && currentTemple.roomData.triple_seater}</p>
+          <button onClick={() => setShowRoomsForm(true)} className="update-rooms-button">
+            Update Rooms
+          </button>
+        </div>
 
         <div className="temple-profile-card home-fund-card">
-          <h3>Home Fund</h3>
-          <p>Total Donations Received: ${currentTemple.homeFund || 0}</p>
+          <h3>DONATION </h3>
+          <p className='fs-3'>Total Donations Received: {currentTemple.donation && currentTemple.donation.amount || 0} Rs</p>
           {/* Add form elements to update donation details here */}
         </div>
       </div>
@@ -106,7 +85,7 @@ function TempleProfile() {
       {/* Temple Details Section - Two-Column Layout */}
       <div className="temple-details-row">
         <div className="temple-details-column">
-        <p className='temple-detail'>Temple ID : {currentTemple.id}</p>
+          <p className='temple-detail'>Temple ID : {currentTemple.id}</p>
           <p className='temple-detail'>Email: {currentTemple.email}</p>
           <p className='temple-detail'>Mobile: {currentTemple.mobNumber}</p>
           <p className='temple-detail'>DIETY: {currentTemple.diety}</p>
@@ -119,39 +98,56 @@ function TempleProfile() {
         </div>
       </div>
 
-    {/* Rooms Update Form */}
-      {showRoomsForm && (
-        <form  id='room-update-form' onSubmit={handleSubmit(onRoomUpdate)}>
+       {/* Rooms Update Form */}
+       {showRoomsForm && (
+        <form id='room-update-form' onSubmit={handleSubmit(onRoomUpdate)}>
           <div className="rooms-update-form">
             <h3>Update Rooms Availability</h3>
             <div className="form-group mb-2">
-            <label className='text-align-left' htmlFor="name">Single Seater Rooms</label>
-            <input  {...register("single_seater")} type="text" className="form-control"placeholder="Number of rooms available" required/>
-            </div>  
+              <label className='text-align-left' htmlFor="name">Single Seater Rooms</label>
+              <input {...register("single_seater")} type="text" className="form-control" placeholder="Number of rooms available" required />
+            </div>
             <div className="form-group mb-2">
-            <label className='text-align-left' htmlFor="name">Double Seater Rooms</label>
-            <input  {...register("double_seater")} type="text" className="form-control"placeholder="Number of rooms available" required/>
-            </div>  
+              <label className='text-align-left' htmlFor="name">Double Seater Rooms</label>
+              <input {...register("double_seater")} type="text" className="form-control" placeholder="Number of rooms available" required />
+            </div>
             <div className="form-group mb-2">
-            <label className='text-align-left' htmlFor="name">Tripe Seater Rooms</label>
-            <input  {...register("triple_seater")} type="text" className="form-control"placeholder="Number of rooms available" required/>
-            </div>  
+              <label className='text-align-left' htmlFor="name">Triple Seater Rooms</label>
+              <input {...register("triple_seater")} type="text" className="form-control" placeholder="Number of rooms available" required />
+            </div>
             <div className="form-buttons">
               <button type="submit">Submit</button>
               <button onClick={() => setShowRoomsForm(false)}>Cancel</button>
             </div>
           </div>
-          </form>)}
+        </form>
+      )}
+      {/* Event update form */}
+      { eventForm && (
+        <form id='room-update-form' onSubmit={handleSubmit(onEventUpdate)}>
+          <div className="rooms-update-form">
+            <h3>Update Upcoming Event</h3>
+            <div className="form-group mb-2">
+              <label htmlFor="event_name">Event Name</label>
+              <input {...register("event_name")} type="text" className="form-control" placeholder="Name of Event" required />
+            </div>
+            <div className="form-group mb-2">
+              <label htmlFor="event_date">Event Start Date</label>
+              <input {...register("event_date")} type="date" className="form-control" placeholder="Date of Event Starting" required />
+            </div>
+            <div className="form-group mb-2">
+              <label htmlFor="event_duration">Event Duration</label>
+              <input {...register("event_duration")} type="text" className="form-control" placeholder="e.g. 3 Days or 5 Days" required />
+            </div>
+            <div className="form-buttons">
+              <button type="submit">Submit</button>
+              <button type="button" onClick={() => setEventForm(false)}>Cancel</button>
+            </div>
+          </div>
+        </form>
+      )}
     </section>
   );
-
-
 }
 
 export default TempleProfile;
-
-
-
-
-
-    

@@ -29,7 +29,7 @@ function App() {
         },
         {
           path: "login",
-          element: <Suspense fallback = {<p className="display-1 text-danger">Loading Login component........</p>}>  <Login/> </Suspense>,
+          element: <Suspense fallback = {<p className="display-3 text-center text-danger">Loading Login component........</p>}>  <Login/> </Suspense>,
         },
         {
           path: "user-profile",

@@ -1,17 +1,19 @@
-import React from 'react'
-import {useForm} from 'react-hook-form'
+import React from 'react';
+import { useForm } from 'react-hook-form';
 import { userLoginContext } from '../contexts/userLoginContext';
-import {TempleContext} from '../contexts/TempleContext';
-import { useEffect,useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { TempleContext } from '../contexts/TempleContext';
+import { useEffect, useContext } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import "./login.css"
 
 function Login() {
-  let navigate = useNavigate();
-  let {register , handleSubmit } = useForm();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { register, handleSubmit } = useForm();
 
-  let [currentUser,setCurrentUser,userLoginStatus, setUserLoginStatus,onUserLogin,error] = useContext(userLoginContext);
-  let [isTemple,setIsTemple,currentTemple,setCurrentTemple,templeLoginStatus,setTempleLoginStatus,onTempleLogin]  = useContext(TempleContext)
-  
+  const [,, userLoginStatus, , onUserLogin, error] = useContext(userLoginContext);
+  const [isTemple,,,, templeLoginStatus,, onTempleLogin] = useContext(TempleContext);
+
   useEffect(() => {
     if (userLoginStatus === true || templeLoginStatus === true) {
       const targetPath = isTemple ? "/temple-profile" : "/user-profile";
@@ -19,62 +21,47 @@ function Login() {
     }
   }, [userLoginStatus, templeLoginStatus, isTemple, navigate]);
 
-
+  const handleUserLogin = (data) => {
+    onUserLogin(data, location, navigate);
+  };
 
   return (
-    <div className='d-flex flex-column justify-content-center m-3'>
-       <h1 className="display-1 text-center text-info">{ isTemple ? <span> Login as Temple </span>: <span> User Login </span>}</h1>
-       {error.length !== 0 && <p className='fs-2 text-center text-danger'>{error}</p>}
-       {/* ussername */}
-      
-       <form onSubmit = {handleSubmit( isTemple ? onTempleLogin : onUserLogin)} name='form1' className='w-50 p-3 border mx-auto mt-3'>
+   <section className='login-section'>
+      <div className='wrapper'>
+        <div className="title">
+          {isTemple ? 'Temple Login' : 'User Login'}
+        </div>
+        {error.length !== 0 && <p className='fs-2 text-center text-danger'>{error}</p>}
+
+        <form onSubmit={handleSubmit(isTemple ? onTempleLogin : handleUserLogin)} name='form1'>
           {
             isTemple ? (
-              <div className="form-group mb-2">
-              <label htmlFor="email">Email</label>
-              <input {...register("email")} type="email" className="form-control" id="email" placeholder="Enter Email"/>
-              </div>):(
-              <div className="form-group mb-2">
-              <label htmlFor="username">Username</label>
-              <input {...register("username")} type="text" className="form-control" id="username" placeholder="Username"/>
-             </div>
-           )
+              <div className="field">
+                <input {...register("email")} type="email" id="email"  required/>
+                <label htmlFor="email">Email Address</label>
+              </div>
+            ) : (
+              <div className="field">
+                <input {...register("username")} type="text" id="username" required/>
+                <label htmlFor="username">Username</label>
+              </div>
+            )
           }
-          
-            
-              {/* password */}
-            <div className="form-group mb-3">
-              <label htmlFor="password">Password</label>
-              <input {...register("password")} type="password" className="form-control" id="password" placeholder="Password"/>
-            </div>
-            <button type="submit" className="btn btn-primary">Login</button>
-        </form>  
+
+          <div className="field">
+            <input {...register("password")} type="password" id="password" required/>
+            <label htmlFor="password">Password</label>
+          </div>
+          <div className="field">
+            <input type="submit" value="Login"/>
+          </div>
+          {/* <div className="signup-link">
+            Not a member? <a href="#">Signup now</a>
+          </div> */}
+        </form>
       </div>
-  )
+   </section>
+  );
 }
 
-export default Login
-
-
-  //function
-  // async function onUserLogin(userCredObj){
-  //   // make api call to verify credentials
-  //   let res = await axios.get(`http://localhost:4000/users?username=${userCredObj.username}`)
-  //   let userList = res.data
-
-  //   //if user not existed
-  //   if(userList.length === 0){
-  //       setError('Invalid Username')
-  //   }
-  //   else{ // if username is matched , then camparing passwords
-  //     let result = compareSync(userCredObj.password,userList[0].password)
-  //      // if password are not matched
-  //     if(result === false){
-  //       setError('Invalid Password')
-  //     }
-  //     // if password is matched , navigate to userprofile
-  //     else{
-  //         navigate('/user-profile',{state:userList[0]})
-  //     }
-  //   }
-  // }
+export default Login;

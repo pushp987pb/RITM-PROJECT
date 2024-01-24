@@ -1,6 +1,6 @@
 
 import React from 'react';
-import styles from  './Home.css';
+import './Home.css';
 
 function Home() {
   return (
@@ -9,7 +9,7 @@ function Home() {
         {/* Replace the dummy image URL with your actual image URL */}
         <img
           className="hero-image"
-          src="https://images.unsplash.com/photo-1557610601-6f9750af7fb8?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Hero Section"
+          src="https://pragyata.com/wp-content/uploads/2020/08/hindu-temple.jpg" alt="Hero Section"
         />
         <div className="hero-content">
           <h1 className="hero-heading">Welcome to Our Temple Management System</h1>

@@ -3,37 +3,108 @@ import './UserProfile.css';
 import { userLoginContext } from '../contexts/userLoginContext'
 
 function UserProfile() {
-  let [currentUser,setCurrentUser]=useContext(userLoginContext)
-  let [msg , setmsg]  = useState('')
-
+  let [currentUser]=useContext(userLoginContext)
 
   return (
-    <section className="section">
-      <div className='user-profile mx-auto m-5 rounded w-50 p-3'>
-        <p className="fs-1 text-primary fw-bold text-center">Welcome {currentUser.fullname}</p>
-
-        <div className='user-details'>
-          <img
-            className='profile-image'
-            src = 'https://images.unsplash.com/photo-1524443169398-9aa1ceab67d5?q=80&w=1448&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-            // src={currentUser.profileImg}
-            alt='Profile'
-          />
-          <div className='user-info'>
-            <p className='fs-2 text-center w-75 rounded'>YOUR DETAILS</p>
-            {currentUser.username && <p className=''>Username: {currentUser.username}</p>}
-            {currentUser.email && <p className=''>Email: {currentUser.email}</p>}
-            {currentUser.mobNumber && <p className=''>Mobile: {currentUser.mobNumber}</p>}
-            {currentUser.dob && <p className=''>DOB: {currentUser.dob}</p>}
-          </div>
+    <section className="user-profile-section">
+      <header className='user-profile-header'>
+        <h3>Welcome {currentUser.fullname ? currentUser.fullname : 'Mr. Anonymous' }</h3>
+        <div className='user-profile-img'>
+              <img src={currentUser.profileImg ? currentUser.profileImg : 'https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?size=626&ext=jpg&ga=GA1.1.1801501137.1706076229&semt=ais'}
+                alt="Profile"/> 
         </div>
-        {msg.length !== 0 && <p className='fs-5 text-center text-danger mt-3'>{msg}</p>}
+      </header>
+      <div className='user-profile-about'>
+         <h3>About</h3>
+         <div className='user-profile-about-details'>
+            <p>Username : {currentUser.username ? currentUser.username : 'Not Specified' }</p>
+            <p>Gender : {currentUser.gender ? currentUser.gender : 'Not Specified' }</p>
+            <p>Mobile : {currentUser.mobNumber ? currentUser.mobNumber : 'Not Specified' }</p>
+            <p>DOB : {currentUser.dob ? currentUser.dob : 'Not Specified' }</p>
+            <p>Email : {currentUser.email ? currentUser.email : 'Not Specified' }</p>
+          </div>
+      </div>
+      <div className='user-profile-cards'>
+        <div className='user-profile-card'>
+          <h5>Room Booking Details</h5>
+           {currentUser.bookedRooms ? (
+              <>
+                <p>Single Seater: {currentUser.bookedRooms.single_seater}</p>
+                <p>Double Seater: {currentUser.bookedRooms.double_seater}</p>
+                <p>Triple Seater: {currentUser.bookedRooms.triple_seater}</p>
+              </>
+            ) : (
+              <p>No Record Found</p>
+            )}
+        </div>
+        <div className='user-profile-card'>
+            <h5>Donation Details</h5>
+              {currentUser.donation ? (
+                  <p>You have donated <br></br>{currentUser.donation.amount} Rupees  to <br></br>{currentUser.templeName}</p>
+                ) : (
+                  <p>No Record Found</p>
+                )}
+        </div>
       </div>
     </section>
-  )
+  );
 }
 
-export default UserProfile
+export default UserProfile;
+
+{/*
+<div className="user-profile-header">
+<div className="profile-image-container">
+   <img
+    src={currentUser.profileImg ? currentUser.profileImg : 'https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?size=626&ext=jpg&ga=GA1.1.1801501137.1706076229&semt=ais'}
+    alt="Profile"
+    className="profile-image"
+  /> 
+</div>
+</div>
+
+<div className="user-details">
+<p>Welcome {currentUser.fullname}</p>
+
+<div className="about-user">
+  <p>Email: {currentUser.email}</p>
+  <p>DOB: {currentUser.dob}</p>
+  <p>Username: {currentUser.username}</p>
+</div>
+
+<div className="card-row">
+  <div className="card">
+    <p className="card-title">About User</p>
+    <p>Email: {currentUser.email}</p>
+    <p>DOB: {currentUser.dob}</p>
+    <p>Username: {currentUser.username}</p>
+    <p>Gender: {currentUser.gender}</p>
+  </div>
+
+  <div className="card">
+    <p className="card-title">Booked Room Details</p>
+    {currentUser.bookedRooms ? (
+      <>
+        <p>Single Seater: {currentUser.bookedRooms.single_seater}</p>
+        <p>Double Seater: {currentUser.bookedRooms.double_seater}</p>
+        <p>Triple Seater: {currentUser.bookedRooms.triple_seater}</p>
+      </>
+    ) : (
+      <p>No Record Found</p>
+    )}
+  </div>
+
+  <div className="card">
+    <p className="card-title">Donation Details</p>
+    {currentUser.donation ? (
+      <p>You have donated: {currentUser.donation.amount} to {currentUser.templeName}</p>
+    ) : (
+      <p>No Record Found</p>
+    )}
+  </div>
+</div>
+</div>
+
 
 
 

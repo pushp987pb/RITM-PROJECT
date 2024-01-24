@@ -1,59 +1,68 @@
-/* userprofile.css */
-
-.section {
-    padding: 20px;
-  }
-  
-  .user-profile {
+.user-profile-section{
     background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .fs-1 {
-    font-size: 2rem;
-  }
-  
-  .user-details {
+    margin: 0px 80px 40px 80px;
+    border-radius: 0px 0px 100px 100px;
+    padding-bottom: 50px;
+    box-shadow: 4px 8px 16px 0 rgba(0,0,0,0.2);
+    border: 15px solid #f2f2f2;
+    border-top: 0px;
+    z-index: -1000;
+}
+
+.user-profile-header{
+    background-color: #161752;
+    padding: 30px;
+    color: #fff;
+    position: relative;
+}
+.user-profile-img{
+    position: absolute;
+    left: 80%;
+    top: 30px;
+}
+.user-profile-header h3{ 
+    font-family: 'Trebuchet MS', sans-serif;
+    margin-left: 40px;
+    font-size: 28px;
+ }
+.user-profile-img img{
+    width: 60%;
+    border-radius: 20px;
+}
+
+.user-profile-about{
+    background-color: ;
+    padding-top: 3%;
+}
+.user-profile-about h3{ 
+    margin-left: 30px;
+    margin-bottom: 0px;
+}
+.user-profile-about-details{
+    background-color: #f3f3f3;
+    margin: 0px 30px;
+    width: 70%;
+    border-radius: 5px;
+    padding: 5px;
+}
+.user-profile-about-details p{
+    margin-bottom: 5px;
+}
+
+.user-profile-cards{
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex-direction: column;
-  }
-  
-  .user-info {
-    background-color: #f8f9fa;
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 8px;
-    width: 75%;
-  }
-  
-  .fs-2 {
-    font-size: 1.5rem;
+    justify-content: space-around;
+}
+.user-profile-card{
+    background-color: #f2f2f2;
+    border:5px solid #fff;
+    padding: 10px 25px;
+    border-radius: 25px;
     text-align: center;
-    background-color: #007bff;
-    color: #fff;
-    padding: 8px;
-    border-radius: 8px;
-  }
-  
-  .profile-image {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-bottom: 15px;
-  }
-  
-  .text-danger {
-    color: #dc3545;
-  }
-  
-  .mt-3 {
-    margin-top: 1rem;
-  }
-  
+    margin-top: 20px;
+    box-shadow: 4px 8px 16px 0 rgba(0,0,0,0.2);
+}
+.user-profile-card p{
+    margin-bottom: 5px;
+}

@@ -6,11 +6,29 @@ import {TempleContext} from './TempleContext'
 function TempleContextProvider({ children }) {
 
   
-  let [isTemple, setIsTemple] = useState(true);
+  let [isTemple, setIsTemple] = useState(false);
   let [currentTemple, setCurrentTemple] = useState({});
   let [templeLoginStatus, setTempleLoginStatus] = useState(false);
 
   let [error, setError] = useState('');
+  let [roomData, setRoomsData] = useState({
+    singleSeater: 0,
+    doubleSeater: 0,
+    tripleSeater: 0,
+  });
+  
+  // function to update room deatails
+  async function onRoomUpdate(data){
+    try {
+      let updatedData = { ...currentTemple, ...data }
+      const updateResponse = await axios.put(`http://localhost:4000/temples/${currentTemple.id}`, updatedData);
+      if (updateResponse.status === 200) {
+        console.log('Updated Successfully');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
+  };
 
   
 
@@ -40,7 +58,7 @@ function TempleContextProvider({ children }) {
   return (
     <TempleContext.Provider
     value={[isTemple,setIsTemple,currentTemple,setCurrentTemple,
-             templeLoginStatus,setTempleLoginStatus,onTempleLogin,error, setError]}>
+             templeLoginStatus,setTempleLoginStatus,onTempleLogin,error,setError,roomData, setRoomsData,onRoomUpdate]}>
 
       {children}
     </TempleContext.Provider>

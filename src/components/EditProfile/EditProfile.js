@@ -68,10 +68,10 @@ function EditProfile(){
       }
 
     return(
-        <div className='model'>
+        <div className='edit-profile-container'>
           {
             isTemple ? (
-              <form name='form1' onSubmit={handleSubmit(updateUserDetails)}  className='modal-content'>
+              <form name='form1' onSubmit={handleSubmit(updateUserDetails)}  className='edit-profile-form'>
                 <div className="form-group mb-2">
                   <label htmlFor="username">Email</label>
                   <input value={currentTemple.email} type="email" className="form-control" id="username" placeholder="" disabled/>
@@ -109,7 +109,7 @@ function EditProfile(){
           </form> 
    
             ) : (
-              <form name='form1' onSubmit={handleSubmit(updateUserDetails)}  className='modal-content'>
+              <form name='form1' onSubmit={handleSubmit(updateUserDetails)}  className='edit-profile-form'>
               <div className="form-group mb-2">
                 <label htmlFor="username">Username</label>
                 <input value={currentUser.username} type="text" className="form-control" id="username" placeholder="Username" disabled/>
