@@ -1,85 +1,92 @@
-.user-profile{
-  background-color: #ddd;
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
-.user-profile img{
-  width: 70%;
-  border-radius: 50px;
+::selection{
+  background: ;
+  color: #fff;
 }
-.user-details{
+.edit-profile-container{
+  margin-top: 40px;
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
+  height: 100%;
+  width: 100%;
+  place-items: center;
+  margin-bottom: 30px;
+  /* background: linear-gradient(-135deg, #c850c0, #4158d0); */
+}
+.edit-profile-wrapper{
+  width: 60%;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
+}
+.edit-profile-wrapper .title{
+  font-size: 35px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 100px;
+  color: #fff;
+  user-select: none;
+  border-radius: 15px 15px 0 0;
+  background: linear-gradient(-135deg, #f4856d, #ff5733);
+
+}
+.edit-profile-wrapper form{
+  padding: 10px 30px 20px 30px;
 }
 
-/* The Modal (background) */
-.edit-profile-container {
-    display: block; 
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-  }
-  
-  /* Modal Content/Box */
-  .edit-profile-form {
-    padding: 20px;
-    background-color: #fefefe;
-    margin: 50px auto; /* 15% from the top and centered */
-    border: 1px solid #888;
-    width: 50%; /* Could be more or less, depending on screen size */
-  }
+.edit-profile-wrapper form .field{
+  width: 100%;
+  margin-top: 10px;
+  position: relative;
+}
+.edit-profile-wrapper form .field input,textarea{
+  padding: 10px 10px;
+  height: 100%;
+  width: 100%;
+  outline: none;
+  font-size: 17px;
+  padding-left: 10px;
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  margin-bottom: 10px;
+}
+/* .edit-profile-wrapper form .field input:focus,
+form .field input:valid,textarea:focus{
+  border-color: #aaa;
+} */
 
-
-  
-  /* Full-width inputs */
-  input[type=text], input[type=number], input[type=password],input[type=tel], input[type=date], input[type=email] {
-    width: 100%;
-    padding: 8px 20px;
-    margin: 4px 0;
-    display: block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-  }
-
-  /* The Close Button */
-.close {
-    /* Position it in the top right corner outside of the modal */
-    position: absolute;
-    right: 25px;
-    top: 0;
-    color: #000;
-    font-size: 35px;
-    font-weight: bold;
-  }
-  /* Close button on hover */
-.close:hover,
-.close:focus {
-  color: red;
+form .field .edit-btn{
+  padding: 10px;
+  width: 40%;
+  outline: none;
+  color: #fff;
+  border: none;
+  margin: 10px;
+  font-size: 20px;
+  font-weight: 500;
   cursor: pointer;
+  background: linear-gradient(-135deg, #f4856d, #ff5733);
+  transition: all 0.3s ease;
+  border-radius: 10px;
+}
+form .field .edit-btn .cancel{
+  margin-left: 160px;
 }
 
-  /* Add Zoom Animation */
-.animate {
-    -webkit-animation: animatezoom 0.6s;
-    animation: animatezoom 0.6s
-  }
-  
-  @-webkit-keyframes animatezoom {
-    from {-webkit-transform: scale(0)}
-    to {-webkit-transform: scale(1)}
-  }
-  
-  @keyframes animatezoom {
-    from {transform: scale(0)}
-    to {transform: scale(1)}
-  }
+form .field .edit-btn:active{
+  transform: scale(0.95);
+}
 
-  button {
-    background-color: #04AA6D;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 40%;
+@media screen and (max-width: 680px)  {
+  .edit-profile-wrapper{
+    width: 80%;
   }
+}

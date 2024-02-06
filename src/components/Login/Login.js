@@ -11,19 +11,22 @@ function Login() {
   const location = useLocation();
   const { register, handleSubmit } = useForm();
 
-  const [,, userLoginStatus, , onUserLogin, error] = useContext(userLoginContext);
-  const [isTemple,,,, templeLoginStatus,, onTempleLogin] = useContext(TempleContext);
+  const [,,userLoginStatus,,onUserLogin, error] = useContext(userLoginContext);
+  const [isTemple,,,,templeLoginStatus,, onTempleLogin,msg] = useContext(TempleContext);
 
-  useEffect(() => {
-    if (userLoginStatus === true || templeLoginStatus === true) {
-      const targetPath = isTemple ? "/temple-profile" : "/user-profile";
-      navigate(targetPath);
+    useEffect(() => {
+      if (userLoginStatus === true || templeLoginStatus === true) {
+        const targetPath = isTemple ? "/temple-profile" : "/user-profile";
+        navigate(targetPath);
+      }
+    }, [userLoginStatus, templeLoginStatus, isTemple, navigate]);
+
+    const handleUserLogin = (data) => {
+      onUserLogin(data, location, navigate);
+    };
+    function toRegister(){
+      navigate("/register");
     }
-  }, [userLoginStatus, templeLoginStatus, isTemple, navigate]);
-
-  const handleUserLogin = (data) => {
-    onUserLogin(data, location, navigate);
-  };
 
   return (
    <section className='login-section'>
@@ -31,8 +34,8 @@ function Login() {
         <div className="title">
           {isTemple ? 'Temple Login' : 'User Login'}
         </div>
-        {error.length !== 0 && <p className='fs-2 text-center text-danger'>{error}</p>}
-
+        {error.length !== 0 && <p className='fs-4 text-center text-danger'>{error}</p>}
+        {msg.length !== 0 && <p className='fs-4 text-center text-danger'>{msg}</p>}
         <form onSubmit={handleSubmit(isTemple ? onTempleLogin : handleUserLogin)} name='form1'>
           {
             isTemple ? (
@@ -55,9 +58,9 @@ function Login() {
           <div className="field">
             <input type="submit" value="Login"/>
           </div>
-          {/* <div className="signup-link">
-            Not a member? <a href="#">Signup now</a>
-          </div> */}
+           <div className="signup-link">
+            Not a member? <span onClick={toRegister}>Register now</span>
+          </div> 
         </form>
       </div>
    </section>

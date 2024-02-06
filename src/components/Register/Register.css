@@ -6,7 +6,7 @@
   font-family: 'Poppins', sans-serif;
 }
 .login-section{
-  margin: 50px;
+  margin-top: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -132,4 +132,14 @@ form .signup-link a{
 form .pass-link a:hover,
 form .signup-link a:hover{
   text-decoration: underline;
+}
+
+@media screen and (max-width: 480px) {
+  .wrapper{
+    width: 280px;}
+
+    .wrapper .title{
+      font-size: 20px;
+      font-weight: 600;
+      text-align: center;}
 }

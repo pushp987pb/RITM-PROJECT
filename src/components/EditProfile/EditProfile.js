@@ -11,8 +11,8 @@ function EditProfile(){
     
     let navigate = useNavigate();
     let {register , handleSubmit , setValue } = useForm();
-    let [currentUser, setCurrentUser, userLoginStatus, setUserLoginStatus,onUserLogin]=useContext(userLoginContext);
-    let [isTemple,setIsTemple,currentTemple,setCurrentTemple,templeLoginStatus,setTempleLoginStatus,onTempleLogin,, ] = useContext(TempleContext)
+    let [currentUser, setCurrentUser]=useContext(userLoginContext);
+    let [isTemple,,currentTemple,setCurrentTemple] = useContext(TempleContext)
 
     useEffect(() => {
       // Set initial values for the form based on the current user's data
@@ -68,78 +68,86 @@ function EditProfile(){
       }
 
     return(
-        <div className='edit-profile-container'>
-          {
+      <section className='edit-profile-container'>
+         <div className='edit-profile-wrapper'>
+            <div className="title">
+              Edit Profile
+            </div>
+           {
             isTemple ? (
-              <form name='form1' onSubmit={handleSubmit(updateUserDetails)}  className='edit-profile-form'>
-                <div className="form-group mb-2">
+              <form name='form1' onSubmit={handleSubmit(updateUserDetails)}>
+                <div className="field">
                   <label htmlFor="username">Email</label>
-                  <input value={currentTemple.email} type="email" className="form-control" id="username" placeholder="" disabled/>
+                  <input value={currentTemple.email} type="email"disabled/>
                 </div>
-                <div className="form-group mb-2">
+                <div className="field">
                   <label htmlFor="name">Name of Temple</label>
-                  <input {...register("name")} type="text" className="form-control" id="name" placeholder="Name of Temple" required/>
+                  <input {...register("name")} type="text" required/>
                 </div>
-                <div className="form-group mb-3">
+                <div className="field">
                   <label htmlFor="diety">Diety</label>
-                  <input {...register("diety")} type="text" className="form-control" id="diety" placeholder="Name of God whose temple is......." required/>
+                  <input {...register("diety")} type="text" required/>
                 </div>
-                <div className="form-group mb-3">
+                <div className="field">
                   <label htmlFor="tel">Mobile</label>
-                  <input {...register("mobNumber")} type="tel" className="form-control" id="tel" placeholder="Mobile" required/>
+                  <input {...register("mobNumber")} type="tel" required/>
                 </div>
-                <div className="form-group mb-3">
+                <div className="field">
                   <label htmlFor="about">About Temple</label>
-                  <textarea {...register("about")} className="form-control"  placeholder="Enter about temple"> </textarea>
+                  <textarea {...register("about")}> </textarea>
                 </div>
-                <div className="form-group mb-3">
-                  <label htmlFor="image">Image of Temple</label>
-                  <input {...register("image")} type="text" className="form-control" id="image" placeholder="Image Address URL"/>
+                <div className="field">
+                  <label htmlFor="image">Temple Image URL</label>
+                  <input {...register("image")} type="text" />
                 </div>
-                <div className="form-group mb-3">
+                <div className="field">
                   <label htmlFor="state">State</label>
-                  <input {...register("state")} type="text" className="form-control" id="state" placeholder="State" required/>
+                  <input {...register("state")} type="text" required/>
                 </div>
-                <div className="form-group mb-3">
+                <div className="field">
                   <label htmlFor="district">District</label>
-                  <input {...register("district")} type="text" className="form-control" id="district" placeholder="District" required/>
+                  <input {...register("district")} type="text"  required/>
                 </div>
-                <button  type="submit" className="btn btn-success mx-auto">Save</button>
-                <button onClick={openProfile} type="button" className="btn btn-danger mx-auto">Cancel</button>
-          </form> 
+                  <div className="field">
+                    <button  type="submit" className="edit-btn save">Save</button>
+                    <button onClick={openProfile} type="button" className="edit-btn cancel">Cancel</button>
+                  </div> 
+              </form> 
    
             ) : (
-              <form name='form1' onSubmit={handleSubmit(updateUserDetails)}  className='edit-profile-form'>
-              <div className="form-group mb-2">
+              <form name='form1' onSubmit={handleSubmit(updateUserDetails)} >
+              <div className="field">
                 <label htmlFor="username">Username</label>
-                <input value={currentUser.username} type="text" className="form-control" id="username" placeholder="Username" disabled/>
+                <input value={currentUser.username} type="text" disabled/>
               </div>
-              <div className="form-group mb-2">
+              <div className="field">
                 <label htmlFor="fullname">Full Name</label>
-                <input {...register("fullname")} type="text" className="form-control" id="name" placeholder="Full Name" required/>
+                <input {...register("fullname")} type="text" required/>
               </div>
-              <div className="form-group mb-3">
+              <div className="field">
                 <label htmlFor="email">Email</label>
-                <input {...register("email")} type="email" className="form-control" id="email" placeholder="Email" required/>
+                <input {...register("email")} type="email"  required/>
               </div>
-              <div className="form-group mb-3">
+              <div className="field">
                 <label htmlFor="tel">Mobile</label>
-                <input {...register("mobNumber")} type="tel" className="form-control" id="tel" placeholder="Mobile" required/>
+                <input {...register("mobNumber")} type="tel" required/>
               </div>
-              <div className="form-group mb-3">
+              <div className="field">
                 <label htmlFor="dob">Date of Birth</label>
-                <input {...register("dob")} type="date" className="form-control" id="dob" placeholder="Date of Birth" required/>
+                <input {...register("dob")} type="date" required/>
               </div>
-              <div className="form-group mb-3">
+              <div className="field">
                 <label htmlFor="gender">Genger</label>
-                <input {...register("gender")} type="text" className="form-control" id="dob" placeholder="Male/Female" required/>
+                <input {...register("gender")} type="text" required/>
               </div>
-              <button  type="submit" className="btn btn-success mx-auto">Save</button>
-              <button onClick={openProfile} type="button" className="btn btn-danger mx-auto">Cancel</button>
-          </form> )
+               <div className="field">
+                <button  type="submit" className="edit-btn save">Save</button>
+                <button onClick={openProfile} type="button" className="edit-btn cancel">Cancel</button>
+              </div>
+            </form> )
           }
-              
-        </div>
+        </div>    
+      </section>
    
    )
 }

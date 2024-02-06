@@ -8,7 +8,7 @@ function UserProfile() {
   return (
     <section className="user-profile-section">
       <header className='user-profile-header'>
-        <h3>Welcome {currentUser.fullname ? currentUser.fullname : 'Mr. Anonymous' }</h3>
+        <h3>Welcome <br></br>{currentUser.fullname ? currentUser.fullname : 'Mr. Anonymous' }</h3>
         <div className='user-profile-img'>
               <img src={currentUser.profileImg ? currentUser.profileImg : 'https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?size=626&ext=jpg&ga=GA1.1.1801501137.1706076229&semt=ais'}
                 alt="Profile"/> 
@@ -17,7 +17,7 @@ function UserProfile() {
       <div className='user-profile-about'>
          <h3>About</h3>
          <div className='user-profile-about-details'>
-            <p>Username : {currentUser.username ? currentUser.username : 'Not Specified' }</p>
+            <p>Username: {currentUser.username ? currentUser.username : 'Not Specified' }</p>
             <p>Gender : {currentUser.gender ? currentUser.gender : 'Not Specified' }</p>
             <p>Mobile : {currentUser.mobNumber ? currentUser.mobNumber : 'Not Specified' }</p>
             <p>DOB : {currentUser.dob ? currentUser.dob : 'Not Specified' }</p>
@@ -40,8 +40,12 @@ function UserProfile() {
         <div className='user-profile-card'>
             <h5>Donation Details</h5>
               {currentUser.donation ? (
-                  <p>You have donated <br></br>{currentUser.donation.amount} Rupees  to <br></br>{currentUser.templeName}</p>
-                ) : (
+              <>
+                <p>Amount: {currentUser.donation.amount}</p>
+                <p>Payment Mode: {currentUser.donation.payment_method}</p>
+                <p>To : {currentUser.templeName}</p>
+              </>
+            ) : (
                   <p>No Record Found</p>
                 )}
         </div>

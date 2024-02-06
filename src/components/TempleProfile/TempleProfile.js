@@ -56,7 +56,7 @@ function TempleProfile() {
         {/* Stay Upcoming event Card */}
         <div className="temple-profile-card upcoming-events-card">
           <h3>Update Upcoming Event</h3>
-          <p className='event-name'>Event Name: {currentTemple.eventData?.event_name || 'No upcoming event'}</p>
+          <p className='event-name'>Event Name: {currentTemple.eventData?.event_name || 'Not specified'}</p>
           <p className='event-start-date'>Start Date: {currentTemple.eventData?.event_date || 'Not specified'}</p>
           <p className='event-duration'>Duration: {currentTemple.eventData?.event_duration || 'Not specified'}</p>
           <button onClick={() => setEventForm(true)} className="update-rooms-button">
@@ -84,17 +84,18 @@ function TempleProfile() {
 
       {/* Temple Details Section - Two-Column Layout */}
       <div className="temple-details-row">
-        <div className="temple-details-column">
-          <p className='temple-detail'>Temple ID : {currentTemple.id}</p>
-          <p className='temple-detail'>Email: {currentTemple.email}</p>
-          <p className='temple-detail'>Mobile: {currentTemple.mobNumber}</p>
-          <p className='temple-detail'>DIETY: {currentTemple.diety}</p>
-          <p className='temple-detail'>State: {currentTemple.state}</p>
-          <p className='temple-detail'>District: {currentTemple.district}</p>
+        <div className="temple-details-column"> <div className='temple-detail'>
+          <p>Temple ID : {currentTemple.id}</p>
+          <p>Email: {currentTemple.email}</p>
+          <p>Mobile: {currentTemple.mobNumber}</p>
+          <p>DIETY: {currentTemple.diety}</p>
+          <p>State: {currentTemple.state}</p>
+          <p>District: {currentTemple.district}</p></div>
         </div>
 
         <div className="temple-image-column">
-          <img src={currentTemple.image} alt='Temple Image' className='temple-image' />
+          <img  src={currentTemple.image ? currentTemple.image : "https://media.istockphoto.com/id/508628776/photo/sunset-over-kandariya-mahadeva-temple.webp?b=1&s=170667a&w=0&k=20&c=b8XnVpyy7hDGgHpBOpXTZ581q6Xqan0IUaGKRcgZRRM="}
+             alt='Temple Image' className='temple-image' />
         </div>
       </div>
 

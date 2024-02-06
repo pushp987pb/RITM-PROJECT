@@ -3,6 +3,7 @@
 .temple-container {
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row;
     justify-content: center;
     gap: 20px;
     padding: 20px;
@@ -57,4 +58,14 @@
     &:hover {
       background-color:  #f0360c;
     }
+  }
+
+  @media screen and (max-width: 480px) {
+    .temple-container {
+      flex-direction: column;
+      width: 100%;
+    }
+    .temple-card {
+      width: 90%;}
+
   }

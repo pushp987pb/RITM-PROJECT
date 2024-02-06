@@ -3,10 +3,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 .login-section{
-  margin: 50px;
+  margin-top: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,10 +56,11 @@
   transition: all 0.3s ease;
   margin-bottom: 15px;
 }
-.wrapper form .field input:focus,
-form .field input:valid{
+
+.wrapper form .field input:focus{
   border-color: #4158d0;
 }
+
 .wrapper form .field label{
   position: absolute;
   top: 50%;
@@ -71,14 +72,18 @@ form .field input:valid{
   transform: translateY(-50%);
   transition: all 0.3s ease;
 }
-form .field input:focus ~ label,
-form .field input:valid ~ label{
+
+form .field input:valid ~ label, 
+ form .field input:focus ~ label{
   top: 0%;
   font-size: 16px;
   color: #4158d0;
   background: #fff;
   transform: translateY(-50%);
-}
+} 
+
+
+
 form .content{
   display: flex;
   width: 100%;
@@ -124,12 +129,17 @@ form .signup-link{
   margin-top: 20px;
   text-align: center;
 }
-form .pass-link a,
-form .signup-link a{
+
+form .signup-link span{
   color: #4158d0;
   text-decoration: none;
 }
-form .pass-link a:hover,
-form .signup-link a:hover{
+form .signup-link span:hover{
   text-decoration: underline;
+  cursor: pointer;
+}
+@media screen and (max-width: 480px) {
+  .wrapper{
+    width: 280px;}
+
 }

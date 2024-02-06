@@ -7,6 +7,7 @@
     border: 15px solid #f2f2f2;
     border-top: 0px;
     z-index: -1000;
+    font-family: monospace;
 }
 
 .user-profile-header{
@@ -21,7 +22,7 @@
     top: 30px;
 }
 .user-profile-header h3{ 
-    font-family: 'Trebuchet MS', sans-serif;
+    font-family: monospace;
     margin-left: 40px;
     font-size: 28px;
  }
@@ -31,12 +32,14 @@
 }
 
 .user-profile-about{
-    background-color: ;
     padding-top: 3%;
 }
 .user-profile-about h3{ 
     margin-left: 30px;
     margin-bottom: 0px;
+    font-family: monospace;
+    font-size: 28px;
+    font-weight: 600;
 }
 .user-profile-about-details{
     background-color: #f3f3f3;
@@ -46,7 +49,9 @@
     padding: 5px;
 }
 .user-profile-about-details p{
-    margin-bottom: 5px;
+    margin-bottom: 0px;
+    font-family: monospace;
+    font-size: 18px;
 }
 
 .user-profile-cards{
@@ -61,8 +66,42 @@
     border-radius: 25px;
     text-align: center;
     margin-top: 20px;
+    color: #111;
     box-shadow: 4px 8px 16px 0 rgba(0,0,0,0.2);
 }
 .user-profile-card p{
-    margin-bottom: 5px;
+    margin-bottom: 0px;
+    font-family: monospace;
+    font-size: 21px;
+    color: #333;
+}
+
+@media screen and (max-width: 600px) {
+    .user-profile-section{
+        margin: 0px 40px 20px 40px;
+    }
+    .user-profile-header h3{ 
+        font-family: monospace;
+        margin-left: 20px;
+        font-size: 20px;
+     }
+     .user-profile-img{
+        position: absolute;
+        left: 70%;
+        top: 20px;
+    }
+    .user-profile-about-details{
+        background-color: #f3f3f3;
+        margin: 0px auto;
+        width: 70%;
+    }
+    .user-profile-about h3{ 
+        margin-left: 60px;
+    }
+    .user-profile-cards{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
 }

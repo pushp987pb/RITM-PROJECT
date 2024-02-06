@@ -11,8 +11,10 @@ function TempleDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [currentUser] = useContext(userLoginContext);
+
   const [showBookingForm, setShowBookingForm] = useState(false);
   const [donationFrom, setDonationFrom] = useState(false);
+  let [showAlert , setShowAlert] = useState(false);
 
   
   const [templeDetails, setTempleDetails] = useState(null);
@@ -32,21 +34,19 @@ function TempleDetails() {
   const handleBookRoomsClick = () => {
     if (Object.keys(currentUser).length === 0) {
       // User is not logged in, show alert
-      alert("Login First To Book Rooms");
-      // Use the navigate function to go to the login page with the id as a query parameter
-      navigate(`/login?id=${id}`);
+      setShowAlert(true);
     } else {
       // User is logged in, show booking form
       setShowBookingForm(true);
     }
   };
-
+  function sendToLogin(){
+    navigate(`/login?id=${id}`);
+  }
   const handleMakeDonationClick = () => {
     if (Object.keys(currentUser).length === 0) {
       // User is not logged in, show alert
-      alert("Login First To Donate");
-      // Use the navigate function to go to the login page with the id as a query parameter
-      navigate(`/login?id=${id}`);
+      setShowAlert(true);
     } else {
       // User is logged in, show donation form
       setDonationFrom(true);
@@ -168,9 +168,9 @@ function TempleDetails() {
           {/* Stay Facilities Card */}
           <div className="temple-details-card stay-facilities-card">
             <h3>Stay Facilities</h3>
-            <p>Single Seater: {templeDetails.roomData ? templeDetails.roomData.single_seater : "Not Specified"}</p>
-            <p>Double Seater: {templeDetails.roomData ? templeDetails.roomData.double_seater : "Not Specified"}</p>
-            <p>Triple Seater: {templeDetails.roomData ? templeDetails.roomData.triple_seater : "Not Specified"}</p>
+            <p>Single Seater Rooms: {templeDetails.roomData ? templeDetails.roomData.single_seater : "Not Specified"}</p>
+            <p>Double Seater Rooms: {templeDetails.roomData ? templeDetails.roomData.double_seater : "Not Specified"}</p>
+            <p>Triple Seater Rooms: {templeDetails.roomData ? templeDetails.roomData.triple_seater : "Not Specified"}</p>
             <button className="book-rooms-button" onClick={handleBookRoomsClick}>
               Book Rooms
             </button>
@@ -195,25 +195,28 @@ function TempleDetails() {
       { showBookingForm && (
         <form id='room-update-form' onSubmit={handleSubmit(onRoomBooking)}>
           <div className="rooms-update-form">
-            <h3>Provide Details of Rooms</h3>
-            <div className="form-group mb-2">
-              <label className='text-align-left' htmlFor="name">Single Seater Rooms</label>
-              <input {...register("single_seater")} type="number" className="form-control" min='0' max={templeDetails.roomData && templeDetails.roomData.single_seater} placeholder="Number of rooms available" required />
-               <span>{templeDetails.roomData && templeDetails.roomData.single_seater}</span>
+            <div className="title">
+               Provide Room Details
             </div>
-            <div className="form-group mb-2">
-              <label className='text-align-left' htmlFor="name">Double Seater Rooms</label>
-              <input {...register("double_seater")} type="number" className="form-control" min='0' max={templeDetails.roomData && templeDetails.roomData.double_seater} placeholder="Number of rooms available" required />
+            <p className="available-rooms">Available<br></br> Rooms</p>
+            <div className="field">
+              <label id="name">Single Seater Rooms</label>
+              <input {...register("single_seater")} type="number" min='0' max={templeDetails.roomData && templeDetails.roomData.single_seater} placeholder="No. of rooms" required />
+               <span>{templeDetails.roomData && templeDetails.roomData.single_seater}</span> 
+            </div>
+            <div className="field">
+              <label htmlFor="name">Double Seater Room</label>
+              <input {...register("double_seater")} type="number" min='0' max={templeDetails.roomData && templeDetails.roomData.double_seater} placeholder="No. of rooms" required />
                <span>{templeDetails.roomData && templeDetails.roomData.double_seater}</span>
             </div>
-            <div className="form-group mb-2">
-              <label className='text-align-left' htmlFor="name">Triple Seater Rooms</label>
-              <input {...register("triple_seater")} type="number" className="form-control" min='0' max={templeDetails.roomData && templeDetails.roomData.triple_seater} placeholder="Number of rooms available" required />
+            <div className="field">
+              <label htmlFor="name">Triple Seater Rooms</label>
+              <input {...register("triple_seater")} type="number"  min='0' max={templeDetails.roomData && templeDetails.roomData.triple_seater} placeholder="No. of rooms" required />
                <span>{templeDetails.roomData && templeDetails.roomData.triple_seater}</span>
             </div>
             <div className="form-buttons">
-              <button type="submit">Submit</button>
-              <button type="button" onClick={() => setShowBookingForm(false)}>Cancel</button>
+              <button className="form-buttons-btn" type="submit">Submit</button>
+              <button className="form-buttons-btn" type="button" onClick={() => setShowBookingForm(false)}>Cancel</button>
             </div>
           </div>
         </form>
@@ -233,11 +236,24 @@ function TempleDetails() {
               <input {...register("payment_method")} type="text" className="form-control" min='0'  placeholder="e.g. NEFT/IMPS/UPI" required />
             </div>
             <div className="form-buttons">
-              <button type="submit">Submit</button>
-              <button type="button" onClick={() => setDonationFrom(false)}>Cancel</button>
+              <button className="form-buttons-btn" type="submit">Submit</button>
+              <button className="form-buttons-btn"  type="button" onClick={() => setDonationFrom(false)}>Cancel</button>
             </div>
           </div>
         </form>
+      )}
+
+      {/* Alert   Box */}
+      { showAlert && (
+        <section className="alert-container">
+          <div className="alert-box">
+              <p>You need to login for Booking Rooms/Donation</p>
+              <div className="alert-buttons-container">
+                <button onClick={sendToLogin} className="btn btn-primary"> Login</button>
+                <button onClick={() => setShowAlert(false)} className="btn btn-danger">Cancel</button>
+             </div>
+            </div>
+        </section>
       )}
 
 

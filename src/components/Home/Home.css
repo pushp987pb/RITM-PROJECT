@@ -15,12 +15,12 @@ body {
 .hero-image {
   width: 100%;
   height: auto;
-  opacity: 0.9;
+  opacity: 0.8;
 }
 
 .hero-content {
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -31,6 +31,7 @@ body {
   font-size: 3rem;
   font-weight: bold;
   margin-bottom: 20px;
+  color: azure;
 }
 
 .container1 {
@@ -43,5 +44,38 @@ h2 {
   color: #007bff;
   margin-top: 30px;
 }
+@media screen and (max-width: 580px) {
+  .hero-heading {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  .hero-section {
+    position: relative;
+    height: 300px;
+  }
+  .hero-content {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+  }
 
-/* Add more styles as needed */
+}
+
+@media screen and (max-width: 480px) {
+  .hero-heading {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  .hero-section {
+    position: relative;
+    height: 200px;
+  }
+  .container1 {
+   text-align: center;
+  }
+  .hero-content {
+    position: absolute;
+    top: 40%;
+    left: 50%;}
+
+}

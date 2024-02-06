@@ -12,13 +12,13 @@ function Home() {
           src="https://pragyata.com/wp-content/uploads/2020/08/hindu-temple.jpg" alt="Hero Section"
         />
         <div className="hero-content">
-          <h1 className="hero-heading">Welcome to Our Temple Management System</h1>
+          <h1 className="hero-heading">Welcome to Our  Temple Management System</h1>
           {/* Add more content for the hero section if needed */}
         </div>
       </div>
 
       <div className='container1'>
-        <h2 className='text-center display-6 lead text-primary'>Explore Our Temples</h2>
+        <h2 className='text-center display-6 lead text-primary'>About Us</h2>
         {/* Add more content for the main section of the page */}
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,

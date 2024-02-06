@@ -10,7 +10,7 @@ function TempleContextProvider({ children }) {
   let [currentTemple, setCurrentTemple] = useState({});
   let [templeLoginStatus, setTempleLoginStatus] = useState(false);
 
-  let [error, setError] = useState('');
+  let [msg, setMsg] = useState('');
   let [roomData, setRoomsData] = useState({
     singleSeater: 0,
     doubleSeater: 0,
@@ -38,14 +38,14 @@ function TempleContextProvider({ children }) {
     let usersList = res.data;
     //if user not existed
     if (usersList.length === 0) {
-      setError("Invalid Username");
+      setMsg("Invalid Email");
     }
     //if username is matched, then compare passwords
     else {
       let result = compareSync(userCredObj.password, usersList[0].password);
       //if passwords are not matcted
       if (result === false) {
-        setError("Invalid password");
+        setMsg("Invalid password");
       }
       //if passwords are matched, navigate to user profile
       else {
@@ -58,7 +58,7 @@ function TempleContextProvider({ children }) {
   return (
     <TempleContext.Provider
     value={[isTemple,setIsTemple,currentTemple,setCurrentTemple,
-             templeLoginStatus,setTempleLoginStatus,onTempleLogin,error,setError,roomData, setRoomsData,onRoomUpdate]}>
+             templeLoginStatus,setTempleLoginStatus,onTempleLogin,msg,setMsg,roomData, setRoomsData,onRoomUpdate]}>
 
       {children}
     </TempleContext.Provider>
